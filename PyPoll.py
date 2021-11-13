@@ -1,3 +1,4 @@
+# Add our dependencies.
 import csv
 import os
 # Assign a variable for the file to load and the path
@@ -10,6 +11,8 @@ total_votes = 0
 
 # Candidate Options (Declare a new list)
 candidate_options = []
+# Declare the empty dictionary.
+candidate_votes = {}
 
 # Open the election results and read the file
 with open(file_to_load) as election_data:
@@ -22,7 +25,7 @@ with open(file_to_load) as election_data:
 
     # Print each row in the CSV file.
     for row in file_reader:
-        # 2. Add to the total vote count
+        # 2. Add to the total vote count (number = number +1)
         total_votes += 1
 
         # Print the candidate name from each row
@@ -32,21 +35,12 @@ with open(file_to_load) as election_data:
         if candidate_name not in candidate_options:
             #Add the candidate name to the candidate list.
             candidate_options.append(candidate_name)
+
+            # Being tracking that candidate's vote count
+            candidate_votes[candidate_name] = 0
+
+        # Add a vote to that candidate's count (indend: align with the if statement)
+        candidate_votes[candidate_name] += 1
+
 # Print the candidate list.
-print(candidate_name)
-
-
-
-
-
-   # Print the file object.
-    #print(election_data)
-
-
-# Using the open() function with the "w" mode we will write data to the file.
-#with open(file_to_save, "w") as txt_file:
-# Write some data to the file.
-    #txt_file.write("Counties in the Election\n--------------------------\nArapahoe\nDenver\nJefferson")
-
-# Close the file
-#outfile.close()
+print(candidate_votes)
